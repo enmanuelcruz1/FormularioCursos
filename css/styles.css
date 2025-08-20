@@ -1,0 +1,352 @@
+/* --- Reset básico --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+
+main {
+  flex: 1; /* Empuja el footer hacia abajo */
+}
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    /* --- Header Superior --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 50px;
+      height: auto;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-bar input {
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .search-bar button {
+      background: #7aa23f;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* --- Menú --- */
+    nav {
+      background: #7a823f;
+      padding: 10px 40px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+/* --- Título de la sección --- */
+.cursos-titulo {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 30px 0;
+  color: #000;
+}
+
+/* --- Contenedor de cursos en fila --- */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.cursos-container {
+  margin: 25px 0px 25px 0px;
+  display: flex;
+  flex-wrap: wrap; /* permite que los cursos bajen de fila */
+  justify-content: center; /* centra horizontalmente */
+  gap: 20px;
+  padding: 0 20px;
+}
+
+/* --- Cada curso --- */
+.curso {
+  flex: 1 1 calc(20% - 20px); /* máximo 5 por fila */
+  max-width: calc(20% - 20px);
+  min-width: 220px; /* evita que se encoja demasiado */
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Imagen */
+.curso .imagen img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Nombre del curso */
+.curso .nombreCurso h4 {
+  margin: 15px 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* Botón */
+.curso button {
+  background: #7a823f; /* mismo verde del menú */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.curso button:hover {
+  background: #5e662e;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .curso {
+    flex: 1 1 100%; /* ocupa todo el ancho en móvil */
+    max-width: 100%;
+  }
+}
+
+/* --- FOOTER --- */
+.site-footer {
+  background-color: #1f2f57; /* azul oscuro del footer */
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.95rem;
+}
+
+
+.site-footer .footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Logo central */
+.site-footer .footer-logo img {
+  width: 80px;
+  height: auto;
+}
+
+/* Texto de contacto */
+.site-footer .footer-text {
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* Certificaciones */
+.site-footer .footer-certificaciones {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.site-footer .footer-certificaciones img {
+  width: 80px;
+  height: auto;
+  border-radius: 50%;
+  background: #fff; /* resalta los sellos */
+  padding: 5px;
+}
+
+/* Links inferiores */
+.site-footer .footer-links {
+  margin-top: 10px;
+}
+
+.site-footer .footer-links a {
+  color: #fff;
+  margin: 0 8px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.site-footer .footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Derechos */
+.site-footer .footer-copy {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .site-footer .footer-content {
+    gap: 20px;
+  }
+
+  .site-footer .footer-text {
+    font-size: 0.9rem;
+  }
+
+  .site-footer .footer-certificaciones img {
+    width: 65px;
+  }
+}
+
+/* --- FORMULARIO DE REGISTRO --- */
+.registro-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #f8f9fa; /* fondo claro */
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.registro-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #1f2f57;
+}
+
+.registro-container p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.registro-container fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.registro-container div {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.registro-container label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #1f2f57;
+}
+
+.registro-container input,
+.registro-container select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border 0.3s;
+}
+
+.registro-container input:focus,
+.registro-container select:focus {
+  outline: none;
+  border: 1px solid #7a823f; /* verde del botón/menu */
+}
+
+.registro-container button {
+  background: #7a823f; /* mismo verde que en cursos */
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.registro-container button:hover {
+  background: #657034; /* tono más oscuro al pasar */
+}
+
+/*Mensajes de exito y error*/
+/*
+.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.error-container, .success-container {
+  margin: 0px 25px 0px 25px;
+}
+
+
+.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+}*/

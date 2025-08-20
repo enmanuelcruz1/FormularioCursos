@@ -1,0 +1,103 @@
+<?php
+//Guardado de datos
+
+include "dbConexion.php"; //Se puede usar include o require
+
+/*if (isset($_POST['submit'])) {
+    $cedula = $_POST['cedula'];
+    $nombre = $_POST['nombre'];
+    $apellidos = $_POST['apellidos'];
+    $sexo = $_POST['sexo']; 
+
+    $query = "INSERT INTO solicitudesusuarios (cedula, nombres, apellidos, sexo) VALUES ('$cedula', '$nombre', '$apellidos', '$sexo')";
+
+    $result = $dbConexion->execute_query(query: $query);
+
+    if ($result) {
+        echo "Record added successfully!";
+    } else {
+        echo "Error: " . $dbConexion->error;
+    }
+}*/
+
+if (isset($_POST['submit'])) { //Check later this function, no se como pero ya el HTML previene que se metan letras como caracter
+
+    $cedula = filter_var($_POST['cedula'], FILTER_SANITIZE_STRING);
+
+    if (ctype_digit($cedula)) { //Hacer un ternario que marque error y cierre la conexion u algo asi
+        $verificationQuery = "SELECT cedula FROM cedulas WHERE cedula = $cedula";
+        //$verificationStmt = $dbConexion->prepare($verificationQuery);
+        $result = mysqli_query($dbConexion, $verificationQuery); //Esto da un booleano
+        $resultadoDelQuery = Implode("", mysqli_fetch_assoc($result));
+
+        //$resultadoDelQuery = $result->fetch_assoc();
+
+        //Confirmacion de la existencia de cedula
+        if ($cedula == $resultadoDelQuery) { //En cierto punto sera mejor usar switch para la confirmacion de todas estas  cosas
+            echo "Su cedula existe";
+
+            $cedula = filter_var($_POST['cedula'], FILTER_SANITIZE_STRING);
+            $nombre = filter_var($_POST['nombres'], FILTER_SANITIZE_STRING);
+            $apellidos = filter_var($_POST['apellidos'], FILTER_SANITIZE_STRING);
+            $sexo = filter_var($_POST['sexo'], FILTER_SANITIZE_STRING);
+            $cursoSolicitado = filter_var($_POST['cursoSolicitado'], FILTER_SANITIZE_STRING);
+
+            $query = "INSERT INTO solicitantes (cedula, nombres, apellidos, sexo, curso_solicitado) VALUES (?, ?, ?, ?, ?)";
+
+            $stmt = $dbConexion->prepare($query); //Como lo uso 2 veces podria hacer una funcion con argumento, pero bueno, ver cual es mejor si esto o mysqli query
+
+            $stmt->bind_param("sssss", $cedula, $nombre, $apellidos, $sexo, $cursoSolicitado);
+
+            if ($stmt->execute()) { //Luego ingresar en un try-catch, por ahora asi sigue registrando, usar operador ternario. //Esto da un booleano
+                echo "Record added successfully!";
+                echo $cursoSolicitado; //Ver try-catch, para hacer el codigo a prueba de errores
+            } else {
+                echo "Error: " . $stmt->error;
+            }
+
+            $dbConexion->close();
+        } else {
+            echo "Su cedula no existe";
+            echo $resultadoDelQuery;
+        }
+    } else {
+        header("locacion: /cursos/formularioParaSolicitar.php"); //Si no introdujo numeros lo lleva a la pagina de nuevo, aunque no ideal es que le notifique
+        exit;
+    }
+}
+
+//execute query o prepare
+
+
+/*
+
+Creacion de db: Nombre de la Db solicitudes_cursos
+
+Crecion de tabla
+
+CREATE TABLE solicitantes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cedula CHAR(11) NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    sexo CHAR(1) NOT NULL,
+    curso_solicitado VARCHAR(100) NOT NULL
+);
+
+INSERT INTO cedulas (cedula)
+VALUES
+('12345678914'),
+('12345678915'),
+('12345678916'),
+('12345678917'),
+('12345678918'),
+('12345678919'),
+('12345678920'),
+('12345678921'),
+('12345678922'),
+('12345678923');
+
+SELECT COUNT(*) FROM solicitantes WHERE curso_solicitado = 'poderJudicialCurso';
+
+ */
+?>
